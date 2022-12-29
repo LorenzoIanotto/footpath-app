@@ -2,6 +2,7 @@ import {
 	createStackNavigator,
 	StackScreenProps,
 } from "@react-navigation/stack";
+import NavigationHeader from "../components/general/navigation/NavigationHeader";
 import FootpathDetailsScreen from "../screens/footpaths/FootpathDetailsScreen/FootpathDetailsScreen";
 import FootpathsListScreen from "../screens/footpaths/FootpathsListScreen/FootpathsListScreen";
 
@@ -24,7 +25,12 @@ export type FootpathDetailsScreenProps = StackScreenProps<
 
 const FootpathStack = () => {
 	return (
-		<Stack.Navigator initialRouteName="FootpathsListScreen">
+		<Stack.Navigator
+			initialRouteName="FootpathsListScreen"
+			screenOptions={{
+				header: (props) => <NavigationHeader {...props} />,
+			}}
+		>
 			<Stack.Screen
 				name="FootpathsListScreen"
 				component={FootpathsListScreen}

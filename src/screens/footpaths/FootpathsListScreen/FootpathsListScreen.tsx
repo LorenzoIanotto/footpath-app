@@ -4,6 +4,10 @@ import { FootpathsListScreenProps } from "../../../navigation/FootpathStack";
 import { Button } from "react-native-paper";
 
 const FootpathsListScreen = ({ navigation }: FootpathsListScreenProps) => {
+	React.useLayoutEffect(() => {
+		navigation.setOptions({ title: "Footpaths" });
+	});
+
 	return (
 		<View>
 			<Text>FootpathsListScreen</Text>
