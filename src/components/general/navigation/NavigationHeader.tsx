@@ -8,7 +8,7 @@ const NavigationHeader = ({
 	options: { title },
 }: StackHeaderProps) => {
 	return (
-		<Appbar.Header>
+		<Appbar.Header mode="center-aligned">
 			{back && <Appbar.BackAction onPress={() => navigation.goBack()} />}
 			<Appbar.Content title={title ?? name} />
 		</Appbar.Header>
