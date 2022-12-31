@@ -8,7 +8,7 @@ import {
 	DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
 import { MD3DarkTheme, MD3LightTheme } from "react-native-paper";
-import "react-native-gesture-handler";
+//import "react-native-gesture-handler";	// NEEDS TO STAY AT THE TOP LEVEL ENTRY
 import RootNavigation from "./navigation/RootNavigation";
 
 /*
