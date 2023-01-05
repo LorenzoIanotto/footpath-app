@@ -4,6 +4,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Text } from "react-native-paper";
 import { Image } from "react-native";
 import MapView, { Marker } from "react-native-maps";
+import FootpathBarCodeScannerFAB from "../../../components/FootpathDetailsScreen/FootpathBarCodeScannerFAB/FootpathBarCodeScannerFAB";
 
 const FootpathDetailsScreen = ({
 	navigation,
@@ -14,27 +15,7 @@ const FootpathDetailsScreen = ({
 	});
 
 	return (
-		<ScrollView>
-			<Text>{route.params.footpath.description}</Text>
-			<Image
-				source={{ uri: "https://picsum.photos/100/100" }}
-				style={{ height: 100, width: 100 }}
-			/>
-			<Image
-				source={{ uri: "https://picsum.photos/100/100" }}
-				style={{ height: 100, width: 100 }}
-			/>
-			<Image
-				source={{ uri: "https://picsum.photos/100/100" }}
-				style={{ height: 100, width: 100 }}
-			/>
-			<Image
-				source={{ uri: "https://picsum.photos/100/100" }}
-				style={{ height: 100, width: 100 }}
-			/>
-
-			<Text>Posizione QR code:</Text>
-
+		<>
 			<MapView
 				initialRegion={{
 					latitude: 37.78825,
@@ -49,7 +30,10 @@ const FootpathDetailsScreen = ({
 			>
 				<Marker
 					title="inizio"
-					coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
+					coordinate={{
+						latitude: 37.78825,
+						longitude: -122.4324,
+					}}
 				/>
 				<Marker
 					title="midpath"
@@ -60,7 +44,35 @@ const FootpathDetailsScreen = ({
 					coordinate={{ latitude: 37.78, longitude: -122.4324 }}
 				/>
 			</MapView>
-		</ScrollView>
+			<ScrollView>
+				<Text>{route.params.footpath.description}</Text>
+				<Image
+					source={{ uri: "https://picsum.photos/100/100" }}
+					style={{ height: 100, width: 100 }}
+				/>
+				<Image
+					source={{ uri: "https://picsum.photos/100/100" }}
+					style={{ height: 100, width: 100 }}
+				/>
+				<Image
+					source={{ uri: "https://picsum.photos/100/100" }}
+					style={{ height: 100, width: 100 }}
+				/>
+				<Image
+					source={{ uri: "https://picsum.photos/100/100" }}
+					style={{ height: 100, width: 100 }}
+				/>
+
+				<Text>Posizione QR code:</Text>
+			</ScrollView>
+			<FootpathBarCodeScannerFAB
+				onPress={() =>
+					navigation.navigate("FootpathBarCodeScannerModal", {
+						footpath: route.params.footpath,
+					})
+				}
+			/>
+		</>
 	);
 };
 
