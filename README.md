@@ -16,3 +16,8 @@
     -   src/navigation/RootNavigation -> Indice navigazione
 -   src/adapters -> Interfacce API
 -   src/types -> Common data structures
+
+## Try it
+
+-   [Install expo cli](https://docs.expo.dev/get-started/installation/)
+-   Run it with `npx expo start`
