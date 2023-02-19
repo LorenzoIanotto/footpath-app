@@ -3,7 +3,7 @@ interface Footpath {
 	name: string,
 	description: string,
 	checkpoints?: FootpathCheckpoint[]
-	photos?: string
+	photos?: string[]
 }
 
 
