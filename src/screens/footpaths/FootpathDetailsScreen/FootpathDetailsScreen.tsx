@@ -2,10 +2,11 @@ import React from "react";
 import { FootpathDetailsScreenProps } from "../../../navigation/FootpathStack";
 import { ScrollView } from "react-native-gesture-handler";
 import { Text } from "react-native-paper";
-import { Image, View } from "react-native";
+import { View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import FootpathBarCodeScannerFAB from "../../../components/FootpathDetailsScreen/FootpathBarCodeScannerFAB/FootpathBarCodeScannerFAB";
 import styles from "./styles";
+import FootpathCarousel from "../../../components/FootpathDetailsScreen/FootpathCarousel/FootpathCarousel";
 
 const FootpathDetailsScreen = ({
 	navigation,
@@ -47,10 +48,20 @@ const FootpathDetailsScreen = ({
 					/>
 				</MapView>
 				<View style={styles.descriptionSection}>
-					<Text variant="headlineLarge">{route.params.footpath.name}</Text>
-					<Text variant="bodyLarge">{route.params.footpath.description}</Text>
+					<Text variant="headlineLarge">
+						{route.params.footpath.name}
+					</Text>
+					<Text variant="bodyLarge">
+						{route.params.footpath.description}
+					</Text>
 				</View>
-
+				<FootpathCarousel
+					imagesUri={[
+						"https://picsum.photos/400",
+						"https://picsum.photos/200/100",
+						"https://picsum.photos/700",
+					]}
+				/>
 				{/* <Text>Posizione QR code:</Text> */}
 			</ScrollView>
 			<FootpathBarCodeScannerFAB
