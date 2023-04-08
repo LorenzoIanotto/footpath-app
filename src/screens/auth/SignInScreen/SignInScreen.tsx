@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import AuthContext from "../../../contexts/global/AuthContext";
 import {
 	ActivityIndicator,
@@ -9,7 +9,6 @@ import {
 } from "react-native-paper";
 import styles from "./styles";
 import { Controller, useForm } from "react-hook-form";
-import authenticateUser from "../../../adapters/auth/authenticateUser";
 import { AuthenticationError } from "../../../types/auth/AuthenticationError";
 import { SignInScreenProps } from "../../../navigation/AuthStack";
 
@@ -23,20 +22,16 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 		navigation.setOptions({ title: "Sign In" });
 	});
 
-	const { user, setUser } = useContext(AuthContext);
-	const [authError, setAuthError] = useState<AuthenticationError>();
-	const [authInProgress, setAuthInProgress] = useState<boolean>(false);
+	const {
+		login,
+		inProgress: authInProgress,
+		error: authError,
+	} = useContext(AuthContext);
 
 	const form = useForm<formData>();
 
-	async function onSubmit({ username, password }: formData) {
-		try {
-			setAuthInProgress(true);
-			setUser(await authenticateUser(username, password));
-		} catch (authError) {
-			setAuthError(authError as AuthenticationError);
-			setAuthInProgress(false);
-		}
+	function onSubmit({ username, password }: formData) {
+		login(username, password);
 	}
 
 	return (
