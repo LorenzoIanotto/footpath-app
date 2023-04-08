@@ -1,17 +1,23 @@
-interface Footpath {
-	id: number,
-	name: string,
-	description: string,
-	checkpoints?: FootpathCheckpoint[]
-	photos?: string[]
+export interface Footpath {
+	id: number;
+	name: string;
+	description: string;
+	checkpoints?: FootpathCheckpoint[];
+	photos?: string[];
+	status: FootpathStatus;
 }
 
-
-interface FootpathCheckpoint {
-	location: Coordinate
+export enum FootpathStatus {
+	InProgress,
+	NotDone,
+	Done,
 }
 
-interface Coordinate {
-	latitude: number,
-	longitude: number
+export interface FootpathCheckpoint {
+	location: Coordinate;
+}
+
+export interface Coordinate {
+	latitude: number;
+	longitude: number;
 }
