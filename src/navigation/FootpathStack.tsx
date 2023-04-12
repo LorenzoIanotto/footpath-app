@@ -6,6 +6,8 @@ import NavigationHeader from "../components/general/navigation/NavigationHeader"
 import FootpathBarCodeScannerModal from "../screens/footpaths/FootpathBarCodeScannerModal/FootpathBarCodeScannerModal";
 import FootpathDetailsScreen from "../screens/footpaths/FootpathDetailsScreen/FootpathDetailsScreen";
 import FootpathsListScreen from "../screens/footpaths/FootpathsListScreen/FootpathsListScreen";
+import AccountSettingsScreen from "../screens/settings/AccountSettingsScreen/AccountSettingsScreen";
+import { Footpath } from "../types/generic/Footpath";
 
 const Stack = createStackNavigator<FootpathStackParamList>();
 
@@ -13,6 +15,7 @@ type FootpathStackParamList = {
 	FootpathsListScreen: undefined;
 	FootpathDetailsScreen: { footpath: Footpath };
 	FootpathBarCodeScannerModal: { footpath?: Footpath };
+	AccountSettingsScreen: undefined;
 };
 
 export type FootpathsListScreenProps = StackScreenProps<
@@ -28,6 +31,11 @@ export type FootpathDetailsScreenProps = StackScreenProps<
 export type FootpathBarCodeScannerModalProps = StackScreenProps<
 	FootpathStackParamList,
 	"FootpathBarCodeScannerModal"
+>;
+
+export type AccountSettingsScreen = StackScreenProps<
+	FootpathStackParamList,
+	"AccountSettingsScreen"
 >;
 
 const FootpathStack = () => {
@@ -46,6 +54,10 @@ const FootpathStack = () => {
 				<Stack.Screen
 					name="FootpathDetailsScreen"
 					component={FootpathDetailsScreen}
+				/>
+				<Stack.Screen
+					name="AccountSettingsScreen"
+					component={AccountSettingsScreen}
 				/>
 			</Stack.Group>
 			<Stack.Group
