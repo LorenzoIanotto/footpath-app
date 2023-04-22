@@ -1,13 +1,4 @@
-import {
-	adaptNavigationTheme,
-	Provider as PaperProvider,
-} from "react-native-paper";
-import {
-	NavigationContainer,
-	DarkTheme as NavigationDarkTheme,
-	DefaultTheme as NavigationDefaultTheme,
-} from "@react-navigation/native";
-import { MD3DarkTheme, MD3LightTheme } from "react-native-paper";
+import { Provider as PaperProvider } from "react-native-paper";
 //import "react-native-gesture-handler";	// NEEDS TO STAY AT THE TOP LEVEL ENTRY
 import RootNavigation from "./navigation/RootNavigation";
 import AuthContext from "./contexts/global/AuthContext";
@@ -15,31 +6,9 @@ import { useState } from "react";
 import User from "./types/auth/User";
 import authenticateUser from "./adapters/auth/authenticateUser";
 import { AuthenticationError } from "./types/auth/AuthenticationError";
-
-/*
-	https://callstack.github.io/react-native-paper/theming-with-react-navigation.html
-*/
-const { LightTheme, DarkTheme } = adaptNavigationTheme({
-	reactNavigationLight: NavigationDefaultTheme,
-	reactNavigationDark: NavigationDarkTheme,
-});
-
-const CombinedDefaultTheme = {
-	...MD3LightTheme,
-	...LightTheme,
-	colors: {
-		...MD3LightTheme.colors,
-		...LightTheme.colors,
-	},
-};
-const CombinedDarkTheme = {
-	...MD3DarkTheme,
-	...DarkTheme,
-	colors: {
-		...MD3DarkTheme.colors,
-		...DarkTheme.colors,
-	},
-};
+import { CombinedDarkTheme, CombinedLightTheme } from "./themes";
+import { NavigationContainer } from "@react-navigation/native";
+import { useColorScheme } from "react-native";
 
 const App = () => {
 	const [authStatus, setAuthStatus] = useState<{
@@ -69,10 +38,14 @@ const App = () => {
 		setAuthStatus({ user: null, inProgress: false, error: null });
 	}
 
+	const colorScheme = useColorScheme();
+	const CombinedDefaultTheme =
+		colorScheme === "dark" ? CombinedDarkTheme : CombinedLightTheme;
+
 	return (
-		<PaperProvider theme={CombinedDarkTheme}>
+		<PaperProvider theme={CombinedDefaultTheme}>
 			<AuthContext.Provider value={{ ...authStatus, login, logout }}>
-				<NavigationContainer theme={CombinedDarkTheme}>
+				<NavigationContainer theme={CombinedDefaultTheme}>
 					<RootNavigation />
 				</NavigationContainer>
 			</AuthContext.Provider>
