@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { View } from "react-native";
-import { Avatar, Text } from "react-native-paper";
+import { Avatar, Button, Text } from "react-native-paper";
 import AuthContext from "../../../contexts/global/AuthContext";
 import styles from "./styles";
 
 const AccountSettingsScreen = () => {
-	const { user } = useContext(AuthContext);
+	const { user, logout } = useContext(AuthContext);
 	return (
 		<View style={styles.mainView}>
 			<Avatar.Image
@@ -13,6 +13,9 @@ const AccountSettingsScreen = () => {
 				size={200}
 			/>
 			<Text variant="headlineLarge">{user?.name}</Text>
+			<Button icon="logout" onPress={logout}>
+				Esci
+			</Button>
 		</View>
 	);
 };
