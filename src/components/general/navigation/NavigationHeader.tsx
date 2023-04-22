@@ -5,12 +5,14 @@ const NavigationHeader = ({
 	navigation,
 	back,
 	route: { name },
-	options: { title },
+	options: { title, headerRight },
 }: StackHeaderProps) => {
+
 	return (
 		<Appbar.Header mode="center-aligned">
 			{back && <Appbar.BackAction onPress={() => navigation.goBack()} />}
 			<Appbar.Content title={title ?? name} />
+			{headerRight && headerRight({})}
 		</Appbar.Header>
 	);
 };
