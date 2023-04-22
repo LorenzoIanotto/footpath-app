@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { SectionList } from "react-native";
-import { Appbar, List, Text } from "react-native-paper";
+import { Appbar, Divider, List, Text } from "react-native-paper";
 import FootpathListTile from "../../../components/FootpathsListScreen/FootpathListTile/FootpathListTile";
 import { FootpathsListScreenProps } from "../../../navigation/FootpathStack";
 import { Footpath, FootpathStatus } from "../../../types/generic/Footpath";
@@ -125,6 +125,7 @@ const FootpathsListScreen = ({ navigation }: FootpathsListScreenProps) => {
 					}
 				/>
 			)}
+			ItemSeparatorComponent={() => <Divider horizontalInset />}
 		/>
 	);
 };
