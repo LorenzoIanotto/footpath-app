@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BarCodeScanner, PermissionStatus } from "expo-barcode-scanner";
 import { FootpathBarCodeScannerModalProps } from "../../../navigation/FootpathStack";
 import { ActivityIndicator, Banner } from "react-native-paper";
@@ -15,6 +15,8 @@ const FootpathBarCodeScannerModal = ({
 	React.useLayoutEffect(() => {
 		navigation.setOptions({ title: "Scan QR" });
 	});
+
+	const [scanned, setScanned] = useState<Boolean>(false);
 
 	const barCodePermissionStatus = useBarScannerPermission();
 
@@ -45,8 +47,14 @@ const FootpathBarCodeScannerModal = ({
 				<BarCodeScanner
 					style={styles.barCodeScanner}
 					onBarCodeScanned={({ type, data }) => {
-						alert(type + " : " + data);
+						//	Avoid multiple scannings
+						if (scanned) {
+							return;
+						}
+
+						setScanned(true);
 						navigation.goBack();
+						alert(type + " : " + data);
 					}}
 				/>
 			)}
