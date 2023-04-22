@@ -10,7 +10,7 @@ const FootpathBarCodeScannerFAB = ({
 			label="Scan QR"
 			mode="elevated"
 			animated
-			icon="camera"
+			icon="qrcode-scan"
 			onPress={onPress}
 		/>
 	);
