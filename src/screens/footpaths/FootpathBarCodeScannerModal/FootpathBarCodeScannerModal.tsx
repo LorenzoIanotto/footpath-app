@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BarCodeScanner, PermissionStatus } from "expo-barcode-scanner";
+import { BarCodeScanner } from "expo-barcode-scanner";
 import { FootpathBarCodeScannerModalProps } from "../../../navigation/FootpathStack";
 import { ActivityIndicator, Banner } from "react-native-paper";
 import styles from "./styles";
@@ -10,7 +10,6 @@ import useBarScannerPermission, {
 
 const FootpathBarCodeScannerModal = ({
 	navigation,
-	route,
 }: FootpathBarCodeScannerModalProps) => {
 	React.useLayoutEffect(() => {
 		navigation.setOptions({ title: "Scan QR" });
