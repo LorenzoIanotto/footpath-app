@@ -99,8 +99,10 @@ const FootpathsListScreen = ({ navigation }: FootpathsListScreenProps) => {
 			]}
 			renderSectionHeader={({ section: { title, data } }) => (
 				<>
-					<List.Subheader variant="titleLarge">
-						{title}
+					<List.Subheader>
+						<Text variant="titleLarge">
+							{title}
+						</Text>
 					</List.Subheader>
 					{data.length > 0 || (
 						<Text
