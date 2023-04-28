@@ -34,6 +34,7 @@ const FootpathsListScreen = ({ navigation }: FootpathsListScreenProps) => {
 				imgPath: require("../../../img/download.jpeg"),
 				start: "45.99731967211662, 12.290553390655688",
 				end: "46.022076719399614, 12.288486597034858",
+				mapCode: '<iframe src="https://www.google.com/maps/d/u/0/embed?mid=14kcDbbXbKFllAZeQRp_3sFjZ3BYtbIk&ehbc=2E312F" width="100%" height="100%"></iframe>',
 			},
 			{
 				status: FootpathStatus.NotDone,
@@ -43,6 +44,7 @@ const FootpathsListScreen = ({ navigation }: FootpathsListScreenProps) => {
 				imgPath: require("../../../img/img_6218.jpg"),
 				start: "45.99731967211662, 12.290553390655688",
 				end: "45.990794145333716, 12.310004312372744",
+				mapCode: '<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1lP7FHwA1UNeWmnwnwcSvJ9PegLPUHNc&ehbc=2E312F" width="100%" height="100%"></iframe>',
 			},
 			{
 				status: FootpathStatus.NotDone,
@@ -52,6 +54,7 @@ const FootpathsListScreen = ({ navigation }: FootpathsListScreenProps) => {
 				imgPath: require("../../../img/esterno-della-chiesa.jpg"),
 				start: "45.99731967211662, 12.290553390655688",
 				end: "46.006656450631006, 12.287605409845874",
+				mapCode: '<iframe src="https://www.google.com/maps/d/u/0/embed?mid=19ELW5m2yrG1s1PLEQGnP1Xz7-IcxqMo&ehbc=2E312F" width="100%" height="100%"></iframe>',
 			},
 
 

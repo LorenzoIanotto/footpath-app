@@ -8,6 +8,7 @@ export interface Footpath {
 	status: FootpathStatus;
 	start: string;
 	end: string;
+	mapCode: string;
 }
 
 export enum FootpathStatus {

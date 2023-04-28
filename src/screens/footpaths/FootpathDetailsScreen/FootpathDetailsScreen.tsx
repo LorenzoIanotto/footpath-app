@@ -8,7 +8,7 @@ import MapView, { Marker } from "react-native-maps";
 import FootpathBarCodeScannerFAB from "../../../components/FootpathDetailsScreen/FootpathBarCodeScannerFAB/FootpathBarCodeScannerFAB";
 import styles from "./styles";
 import FootpathCarousel from "../../../components/FootpathDetailsScreen/FootpathCarousel/FootpathCarousel";
-import CustomMap from "../../../components/Map/CustomMap";
+import WebView from "react-native-webview";
 
 const FootpathDetailsScreen = ({
 	navigation,
@@ -22,7 +22,13 @@ const FootpathDetailsScreen = ({
 	const openMap = createOpenLink(sorgenti);
 
 	return (
+
 		<>
+			<View style={{height: "50%", width: "100%"}}>
+			<WebView scalesPageToFit={true} bounces={false} javaScriptEnabled source={{html: route.params.footpath.mapCode}}
+		
+			/>
+			</View>
 			<ScrollView style={{backgroundColor: "white"}}>
 				{/*<MapView
 					initialRegion={{
@@ -52,12 +58,11 @@ const FootpathDetailsScreen = ({
 						coordinate={{ latitude: 37.78, longitude: -122.4324 }}
 					/>
 				</MapView>}*/}
-				{/*<CustomMap />*/}
-				<TouchableWithoutFeedback onPress={openMap} style={styles.openMap}>
+				{/*<TouchableWithoutFeedback onPress={openMap} style={styles.openMap}>
 					<Text variant="bodyLarge" style={{color: "white"}}>
 						Apri in Google Maps
 					</Text>
-				</TouchableWithoutFeedback>
+			</TouchableWithoutFeedback>*/}
 				<View style={styles.descriptionSection}>
 					<Text variant="headlineLarge" style={styles.title}>
 						{route.params.footpath.name}
