@@ -19,7 +19,7 @@ export const CombinedLightTheme = {
 	colors: {
 		...MD3LightTheme.colors,
 		...LightTheme.colors,
-		primary: "rgb(0, 109, 48)",
+		primary: "#00BF59",
 		onPrimary: "rgb(255, 255, 255)",
 		primaryContainer: "rgb(103, 255, 144)",
 		onPrimaryContainer: "rgb(0, 33, 10)",

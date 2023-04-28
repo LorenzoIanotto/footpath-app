@@ -2,9 +2,12 @@ export interface Footpath {
 	id: number;
 	name: string;
 	description: string;
+	imgPath?: string;
 	checkpoints?: FootpathCheckpoint[];
 	photos?: string[];
 	status: FootpathStatus;
+	start: string;
+	end: string;
 }
 
 export enum FootpathStatus {

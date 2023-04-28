@@ -1,3 +1,4 @@
 import { StyleSheet } from "react-native"
 
-export default StyleSheet.create({FAB: {position: 'absolute', bottom: 0, right: 0, margin: 16, elevation: 0}});
+export default StyleSheet.create({
+    FAB: {position: 'absolute', bottom: 0, right: 0, margin: 16, elevation: 0, backgroundColor: '#00bf59',},})

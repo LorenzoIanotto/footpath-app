@@ -12,6 +12,7 @@ const FootpathBarCodeScannerFAB = ({
 			animated
 			icon="qrcode-scan"
 			onPress={onPress}
+			color="white"
 		/>
 	);
 };

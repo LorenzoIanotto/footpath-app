@@ -11,6 +11,8 @@ import styles from "./styles";
 import { Controller, useForm } from "react-hook-form";
 import { AuthenticationError } from "../../../types/auth/AuthenticationError";
 import { SignInScreenProps } from "../../../navigation/AuthStack";
+import {Image} from "react-native";
+import { SvgUri } from "react-native-svg";
 
 type formData = {
 	username: string;
@@ -19,7 +21,7 @@ type formData = {
 
 const SignInScreen = ({ navigation }: SignInScreenProps) => {
 	React.useLayoutEffect(() => {
-		navigation.setOptions({ title: "Sign In" });
+		navigation.setOptions({ title: "Login" });
 	});
 
 	const {
@@ -36,13 +38,19 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 
 	return (
 		<View style={styles.mainView}>
+
+			<Image
+				source={require("../../../img/leaf.png")}
+				style={styles.image}
+			/>
+
 			<Controller
 				name="username"
 				control={form.control}
 				rules={{ required: true }}
 				render={({ field: { onChange, value, onBlur } }) => (
 					<TextInput
-						placeholder="username"
+						placeholder="Username"
 						onBlur={onBlur}
 						onChangeText={onChange}
 						value={value}
@@ -50,6 +58,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 						error={
 							authError === AuthenticationError.NonExistingUser
 						}
+						outlineStyle={{borderRadius: 20, backgroundColor: "#fff"}}
 					/>
 				)}
 			/>
@@ -66,13 +75,14 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 				rules={{ required: true }}
 				render={({ field: { onChange, value, onBlur } }) => (
 					<TextInput
-						placeholder="password"
+						placeholder="Password"
 						onBlur={onBlur}
 						onChangeText={onChange}
 						value={value}
 						mode="outlined"
 						error={authError === AuthenticationError.WrongPassword}
 						secureTextEntry
+						outlineStyle={{borderRadius: 20, backgroundColor: "#fff"}}
 					/>
 				)}
 			/>
@@ -82,9 +92,8 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 			>
 				Password errata
 			</HelperText>
-
-			<Button mode="elevated" onPress={form.handleSubmit(onSubmit)}>
-				Sign In
+			<Button mode="elevated" onPress={form.handleSubmit(onSubmit)} style={styles.button}>
+				Login
 			</Button>
 			<ActivityIndicator animating={authInProgress} size="large" />
 		</View>
