@@ -20,7 +20,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
 
 type formData = {
-	username: string;
+	email: string;
 	password: string;
 };
 
@@ -39,8 +39,8 @@ const SettingsScreen = ({ navigation }: SignInScreenProps) => {
 
 	const form = useForm<formData>();
 
-	function onSubmit({ username, password }: formData) {
-		login(username, password);
+	function onSubmit({ email, password }: formData) {
+		login(email, password);
 	}
 
 	
@@ -67,17 +67,17 @@ const SettingsScreen = ({ navigation }: SignInScreenProps) => {
 
 			<View style={styles.contSett}>
 				<Text variant="headlineLarge" style={styles.title} numberOfLines={1}>
-					Username
+					Email
 				</Text>
 				<Controller
-					name="username"
+					name="email"
 					control={form.control}
 					rules={{ required: true }}
 					render={({ field: { onChange, value, onBlur } }) => (
-						<TextInput 	placeholder="Username"
+						<TextInput 	placeholder="Email"
 									onBlur={onBlur}
 									onChangeText={onChange}
-									onFocus={() => {if (authError === AuthenticationError.NonExistingUser) {form.clearErrors("username")}} }
+									onFocus={() => {if (authError === AuthenticationError.NonExistingUser) {form.clearErrors("email")}} }
 									value={value}
 									mode="outlined"
 									error={authError === AuthenticationError.NonExistingUser}

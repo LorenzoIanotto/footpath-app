@@ -15,7 +15,7 @@ import {Image} from "react-native";
 import { SvgUri } from "react-native-svg";
 
 type formData = {
-	username: string;
+	email: string;
 	password: string;
 };
 
@@ -32,8 +32,8 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 
 	const form = useForm<formData>();
 
-	function onSubmit({ username, password }: formData) {
-		login(username, password);
+	function onSubmit({ email, password }: formData) {
+		login(email, password);
 	}
 
 	return (
@@ -45,12 +45,12 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 			/>
 
 			<Controller
-				name="username"
+				name="email"
 				control={form.control}
 				rules={{ required: true }}
 				render={({ field: { onChange, value, onBlur } }) => (
 					<TextInput
-						placeholder="Username"
+						placeholder="Email"
 						onBlur={onBlur}
 						onChangeText={onChange}
 						value={value}
