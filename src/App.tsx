@@ -9,6 +9,8 @@ import { AuthenticationError } from "./types/auth/AuthenticationError";
 import { CombinedDarkTheme, CombinedLightTheme } from "./themes";
 import { NavigationContainer } from "@react-navigation/native";
 import { useColorScheme } from "react-native";
+import { StatusBar } from 'expo-status-bar';
+
 
 const App = () => {
 	const [authStatus, setAuthStatus] = useState<{
@@ -43,13 +45,14 @@ const App = () => {
 		colorScheme === "dark" ? CombinedDarkTheme : CombinedLightTheme;
 
 	return (
+		<><StatusBar style="auto" />
 		<PaperProvider theme={CombinedDefaultTheme}>
 			<AuthContext.Provider value={{ ...authStatus, login, logout }}>
 				<NavigationContainer theme={CombinedDefaultTheme}>
 					<RootNavigation />
 				</NavigationContainer>
 			</AuthContext.Provider>
-		</PaperProvider>
+		</PaperProvider></>
 	);
 };
 
