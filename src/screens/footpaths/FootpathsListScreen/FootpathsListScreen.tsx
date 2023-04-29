@@ -30,31 +30,34 @@ const FootpathsListScreen = ({ navigation }: FootpathsListScreenProps) => {
 				status: FootpathStatus.InProgress,
 				id: 1,
 				name: "Sorgenti del Meschio",
-				description: "Il meschio è un fiume che attraversa vittorio, è una delle motivazioni dell’insediamento umano a Vittorio. Il fiume nasce alle pendici del monte visentin, a savassa alta frazione di Vittorio Veneto. La meta è esattamente l’inizio del fiume Meschio, è una sorgente d’acqua limpida che nel tempo ha creato un laghetto. consiglio vivamente di fare questo percorso più volte durante l’anno, per vedere i vari colori che la sorgente assume.",
+				description: "Il Meschio è un fiume che attraversa Vittorio ed è una delle motivazioni dell’insediamento umano nel paese. Il fiume nasce alle pendici del monte Visentin, a Savassa Alta frazione di Vittorio Veneto. La meta è esattamente l’inizio del fiume Meschio, una sorgente d’acqua limpida che nel tempo ha creato un laghetto. Consiglio vivamente di fare questo percorso più volte durante l’anno, per vedere i vari colori che la sorgente assume.",
 				imgPath: require("../../../img/download.jpeg"),
 				start: "45.99731967211662, 12.290553390655688",
 				end: "46.022076719399614, 12.288486597034858",
 				mapCode: '<iframe src="https://www.google.com/maps/d/u/0/embed?mid=14kcDbbXbKFllAZeQRp_3sFjZ3BYtbIk&ehbc=2E312F" width="100%" height="100%"></iframe>',
+				pathUri: "https://goo.gl/maps/ww2Q3rgPgDcyJTVZ9",
 			},
 			{
 				status: FootpathStatus.NotDone,
 				id: 2,
 				name: "Madonna della salute",
-				description: "La passeggiata offre una gradevole vista di Vittorio, di Costa e anche , se c’è buon tempo si può ammirare anche Venezia. La meta è il santuario della madonna della salute costruito in 7 mesi nel 1829, è stato costruito con la “piera dolza” di Fregona, prese dalle grotte del Caglieron.",
+				description: "La passeggiata offre una gradevole vista di Vittorio, di Costa e, se c’è buon tempo, anche di Venezia. La meta è il Santuario della Madonna della Salute costruito in 7 mesi nel 1829 con la “piera dolza” di Fregona, presa dalle grotte del Caglieron.",
 				imgPath: require("../../../img/img_6218.jpg"),
 				start: "45.99731967211662, 12.290553390655688",
 				end: "45.990794145333716, 12.310004312372744",
 				mapCode: '<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1lP7FHwA1UNeWmnwnwcSvJ9PegLPUHNc&ehbc=2E312F" width="100%" height="100%"></iframe>',
+				pathUri: 'https://goo.gl/maps/gZChjx27rqWsetkBA'
 			},
 			{
 				status: FootpathStatus.NotDone,
 				id: 3,
 				name: "Sentiero della rappresaglia",
-				description: "Il sentiero, denominato 'Sui Luoghi della Rappresaglia Tedesca (23 Agosto 1944)', ripercorre i luoghi che furono teatro della rappresaglia tedesca del 23 Agosto 1944, che porto' all'incendio e alla distruzione dei borghi di Santa Giustina, Naronchie, Pradal Centro e Pradal Basso.",
+				description: "Il sentiero, denominato 'Sui Luoghi della Rappresaglia Tedesca', ripercorre i luoghi che furono teatro della rappresaglia tedesca del 23 Agosto 1944, che portò all'incendio e alla distruzione dei borghi di Santa Giustina, Naronchie, Pradal Centro e Pradal Basso.",
 				imgPath: require("../../../img/esterno-della-chiesa.jpg"),
 				start: "45.99731967211662, 12.290553390655688",
 				end: "46.006656450631006, 12.287605409845874",
 				mapCode: '<iframe src="https://www.google.com/maps/d/u/0/embed?mid=19ELW5m2yrG1s1PLEQGnP1Xz7-IcxqMo&ehbc=2E312F" width="100%" height="100%"></iframe>',
+				pathUri: 'https://goo.gl/maps/w7bEgaMN9huitu737'
 			},
 
 
@@ -101,7 +104,6 @@ const FootpathsListScreen = ({ navigation }: FootpathsListScreenProps) => {
 					data: doneFootpaths,
 				},
 			]}
-			style={styles.container}
 			renderSectionHeader={({ section: { title, data } }) => (
 				<>
 					<List.Subheader style={styles.sectionHeader}>

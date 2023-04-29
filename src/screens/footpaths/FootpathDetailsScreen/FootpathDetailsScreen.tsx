@@ -9,6 +9,7 @@ import FootpathBarCodeScannerFAB from "../../../components/FootpathDetailsScreen
 import styles from "./styles";
 import FootpathCarousel from "../../../components/FootpathDetailsScreen/FootpathCarousel/FootpathCarousel";
 import WebView from "react-native-webview";
+import { OpenURLButton } from "../../../components/OpenURLButton/OpenURLButton";
 
 const FootpathDetailsScreen = ({
 	navigation,
@@ -18,8 +19,8 @@ const FootpathDetailsScreen = ({
 		navigation.setOptions({ title: route.params.footpath.name });
 	});
 
-	const sorgenti = { start : route.params.footpath.start, end: route.params.footpath.end, travelType: "walk" };
-	const openMap = createOpenLink(sorgenti);
+	//const path = { latitude: 37.78825, longitude: -122.4324 };
+	//const openMap = createOpenLink(path);
 
 	return (
 
@@ -29,7 +30,7 @@ const FootpathDetailsScreen = ({
 		
 			/>
 			</View>
-			<ScrollView style={{backgroundColor: "white"}}>
+			<ScrollView style={{backgroundColor: "white", paddingTop: "7%"}}>
 				{/*<MapView
 					initialRegion={{
 						latitude: 37.78825,
@@ -58,11 +59,7 @@ const FootpathDetailsScreen = ({
 						coordinate={{ latitude: 37.78, longitude: -122.4324 }}
 					/>
 				</MapView>}*/}
-				{/*<TouchableWithoutFeedback onPress={openMap} style={styles.openMap}>
-					<Text variant="bodyLarge" style={{color: "white"}}>
-						Apri in Google Maps
-					</Text>
-			</TouchableWithoutFeedback>*/}
+				<OpenURLButton url={route.params.footpath.pathUri} children="Apri in Google Maps" />
 				<View style={styles.descriptionSection}>
 					<Text variant="headlineLarge" style={styles.title}>
 						{route.params.footpath.name}

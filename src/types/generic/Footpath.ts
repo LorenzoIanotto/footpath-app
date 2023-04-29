@@ -6,8 +6,9 @@ export interface Footpath {
 	checkpoints?: FootpathCheckpoint[];
 	photos?: string[];
 	status: FootpathStatus;
-	start: string;
-	end: string;
+	start: string;//DA ELIMINARE
+	end: string;//DA ELIMINARE
+	pathUri: string;
 	mapCode: string;
 }
 

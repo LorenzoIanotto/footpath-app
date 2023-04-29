@@ -11,13 +11,12 @@ export default StyleSheet.create({
 	},
 	sectionHeader: {
 		padding: 10,
-		marginTop: "3%",
 	},
 	container: {
 		width: "100%",
 		height: "100%",
 		backgroundColor: "#fff",
-
+		marginTop: "-5%",
 	},
 
 
