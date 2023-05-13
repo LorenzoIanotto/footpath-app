@@ -26,8 +26,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 
 	const {
 		login,
-		inProgress: authInProgress,
-		error: authError,
+		authStatus,
 	} = useContext(AuthContext);
 
 	const form = useForm<formData>();
@@ -56,7 +55,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 						value={value}
 						mode="outlined"
 						error={
-							authError === AuthenticationError.NonExistingUser
+							authStatus.error === AuthenticationError.NonExistingUser
 						}
 						outlineStyle={{borderRadius: 20, backgroundColor: "#fff"}}
 					/>
@@ -64,7 +63,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 			/>
 			<HelperText
 				type="error"
-				visible={authError === AuthenticationError.NonExistingUser}
+				visible={authStatus.error === AuthenticationError.NonExistingUser}
 			>
 				Utente non esistente
 			</HelperText>
@@ -80,7 +79,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 						onChangeText={onChange}
 						value={value}
 						mode="outlined"
-						error={authError === AuthenticationError.WrongPassword}
+						error={authStatus.error === AuthenticationError.WrongPassword}
 						secureTextEntry
 						outlineStyle={{borderRadius: 20, backgroundColor: "#fff"}}
 					/>
@@ -88,14 +87,14 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 			/>
 			<HelperText
 				type="error"
-				visible={authError === AuthenticationError.WrongPassword}
+				visible={authStatus.error === AuthenticationError.WrongPassword}
 			>
 				Password errata
 			</HelperText>
 			<Button mode="elevated" onPress={form.handleSubmit(onSubmit)} style={styles.button}>
 				Login
 			</Button>
-			<ActivityIndicator animating={authInProgress} size="large" />
+			<ActivityIndicator animating={authStatus.inProgress} size="large" />
 		</View>
 	);
 };

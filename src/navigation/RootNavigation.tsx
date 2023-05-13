@@ -4,7 +4,7 @@ import AuthStack from "./AuthStack";
 import FootpathStack from "./FootpathStack";
 
 const RootNavigation = () => {
-	const { user } = useContext(AuthContext);
+	const { authStatus: { user } } = useContext(AuthContext);
 
 	return user ? <FootpathStack /> : <AuthStack />;
 };

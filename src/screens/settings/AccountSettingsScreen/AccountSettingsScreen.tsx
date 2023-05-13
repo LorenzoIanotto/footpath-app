@@ -29,12 +29,10 @@ const SettingsScreen = ({ navigation }: SignInScreenProps) => {
 		navigation.setOptions({ title: "Impostazioni" });
 	});
 
-	const { user, logout } = useContext(AuthContext);
-
 	const {
 		login,
-		inProgress: authInProgress,
-		error: authError,
+		logout,
+		authStatus,
 	} = useContext(AuthContext);
 
 	const form = useForm<formData>();
@@ -56,7 +54,7 @@ const SettingsScreen = ({ navigation }: SignInScreenProps) => {
 			/>
 
 			<Text variant="headlineLarge" style={styles.username} numberOfLines={1}>
-					{user?.name} 
+				{authStatus.user?.name} 
 			</Text>
 
 			<View style={styles.buttonsContainer}>
@@ -77,16 +75,16 @@ const SettingsScreen = ({ navigation }: SignInScreenProps) => {
 						<TextInput 	placeholder="Email"
 									onBlur={onBlur}
 									onChangeText={onChange}
-									onFocus={() => {if (authError === AuthenticationError.NonExistingUser) {form.clearErrors("email")}} }
+									onFocus={() => {if (authStatus.error === AuthenticationError.NonExistingUser) {form.clearErrors("email")}} }
 									value={value}
 									mode="outlined"
-									error={authError === AuthenticationError.NonExistingUser}
+									error={authStatus.error === AuthenticationError.NonExistingUser}
 									outlineStyle={{borderRadius: 20, backgroundColor: "#fff", width: "100%"}}
 									
 									/>)}
 									
 									/>
-					<HelperText type="error" visible={authError === AuthenticationError.NonExistingUser}>
+					<HelperText type="error" visible={authStatus.error === AuthenticationError.NonExistingUser}>
 						Utente non esistente
 					</HelperText>
 				
@@ -105,13 +103,13 @@ const SettingsScreen = ({ navigation }: SignInScreenProps) => {
 							onChangeText={onChange}
 							value={value}
 							mode="outlined"
-							error={authError === AuthenticationError.WrongPassword}
+							error={authStatus.error === AuthenticationError.WrongPassword}
 							outlineStyle={{borderRadius: 20, backgroundColor: "#fff"}}
 							secureTextEntry
 						/>
 					)}
 				/>
-				<HelperText type="error"visible={authError === AuthenticationError.WrongPassword}>
+				<HelperText type="error"visible={authStatus.error === AuthenticationError.WrongPassword}>
 					Password errata
 				</HelperText>
 
@@ -126,7 +124,7 @@ const SettingsScreen = ({ navigation }: SignInScreenProps) => {
 							onChangeText={onChange}
 							value={value}
 							mode="outlined"
-							error={authError === AuthenticationError.WrongPassword}
+							error={authStatus.error === AuthenticationError.WrongPassword}
 							outlineStyle={{borderRadius: 20, backgroundColor: "#fff"}}
 							secureTextEntry
 						/>
@@ -137,11 +135,11 @@ const SettingsScreen = ({ navigation }: SignInScreenProps) => {
 					Salva modifiche
 				</Button>
 				
-				<ActivityIndicator animating={authInProgress} size="large" />
+				<ActivityIndicator animating={authStatus.inProgress} size="large" />
 
 			</View>
 
-			<ActivityIndicator animating={authInProgress} size="large" />
+			<ActivityIndicator animating={authStatus.inProgress} size="large" />
 			
 		</View>
 		</ScrollView>

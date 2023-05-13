@@ -1,19 +1,14 @@
 import { createContext } from "react";
-import { AuthenticationError } from "../../types/auth/AuthenticationError";
-import User from "../../types/auth/User";
+import AuthHandler from "../../types/auth/AuthHandler";
 
-const AuthContext = createContext<{
-	user: User | null;
-	login: (username: string, password: string) => void;
-	logout: () => void;
-	inProgress: boolean;
-	error: AuthenticationError | null;
-}>({
-	user: null,
-	login: () => {},
-	logout: () => {},
-	inProgress: false,
-	error: null,
+const AuthContext = createContext<AuthHandler>({
+	authStatus: {
+		user: null,
+		inProgress: false,
+		error: null,
+	},
+	login: () => { },
+	logout: () => { },
 });
 
 export default AuthContext;
