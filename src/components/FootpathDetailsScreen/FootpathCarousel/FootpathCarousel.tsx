@@ -1,29 +1,28 @@
-import { FlatList, Image, View, useWindowDimensions } from "react-native";
+import {
+	FlatList,
+	Image,
+	View,
+	useWindowDimensions,
+	ImageSourcePropType,
+} from "react-native";
 import styles from "./styles";
-
-const FootpathCarousel = ({ imagesPath }: FootpathCarouselProps) => {
-	const { height, width } = useWindowDimensions();
-
+const FootpathCarousel = ({ imagesSources }: FootpathCarouselProps) => {
+	const { width } = useWindowDimensions();
 	return (
 		<FlatList
-			data={imagesPath}
-			keyExtractor={(item, number) => number.toString()}
+			data={imagesSources}
+			keyExtractor={(item, number) => number.toString() + item.toString()} // Using both number and item to try to generate unique keys that don't conflict
 			horizontal
 			pagingEnabled
-			//use the render item to render the images of imagesPath
-			renderItem={({ item }) => (
-				<Image
-					source={item}
-					style={[styles.carouselImage]}
-				/>
+			renderItem={({ item: source }) => (
+				<View style={{ ...styles.carouselImageContainer, width }}>
+					<Image source={source} style={styles.carouselImage} />
+				</View>
 			)}
-			
 		/>
 	);
 };
-
 type FootpathCarouselProps = {
-	imagesPath: string[];
+	imagesSources: ImageSourcePropType[];
 };
-
 export default FootpathCarousel;

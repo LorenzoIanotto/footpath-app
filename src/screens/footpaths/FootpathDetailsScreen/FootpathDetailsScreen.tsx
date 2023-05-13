@@ -1,10 +1,10 @@
 import React from "react";
 import { FootpathDetailsScreenProps } from "../../../navigation/FootpathStack";
-import { ScrollView, TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { ScrollView } from "react-native-gesture-handler";
 import { Text } from "react-native-paper";
-import { Button, TouchableOpacity, View } from "react-native";
-import openMap, { createOpenLink } from 'react-native-open-maps';
-import MapView, { Marker } from "react-native-maps";
+import { View } from "react-native";
+// import openMap, { createOpenLink } from 'react-native-open-maps';
+// import MapView, { Marker } from "react-native-maps";
 import FootpathBarCodeScannerFAB from "../../../components/FootpathDetailsScreen/FootpathBarCodeScannerFAB/FootpathBarCodeScannerFAB";
 import styles from "./styles";
 import FootpathCarousel from "../../../components/FootpathDetailsScreen/FootpathCarousel/FootpathCarousel";
@@ -23,14 +23,16 @@ const FootpathDetailsScreen = ({
 	//const openMap = createOpenLink(path);
 
 	return (
-
 		<>
-			<View style={{height: "50%", width: "100%"}}>
-			<WebView scalesPageToFit={true} bounces={false} javaScriptEnabled source={{html: route.params.footpath.mapCode}}
-		
-			/>
+			<View style={{ height: "50%", width: "100%" }}>
+				<WebView
+					scalesPageToFit={true}
+					bounces={false}
+					javaScriptEnabled
+					source={{ html: route.params.footpath.mapCode }}
+				/>
 			</View>
-			<ScrollView style={{backgroundColor: "white", paddingTop: "7%"}}>
+			<ScrollView style={{ backgroundColor: "white", paddingTop: "7%" }}>
 				{/*<MapView
 					initialRegion={{
 						latitude: 37.78825,
@@ -59,7 +61,10 @@ const FootpathDetailsScreen = ({
 						coordinate={{ latitude: 37.78, longitude: -122.4324 }}
 					/>
 				</MapView>}*/}
-				<OpenURLButton url={route.params.footpath.pathUri} children="Apri in Google Maps" />
+				<OpenURLButton
+					url={route.params.footpath.pathUri}
+					children="Apri in Google Maps"
+				/>
 				<View style={styles.descriptionSection}>
 					<Text variant="headlineLarge" style={styles.title}>
 						{route.params.footpath.name}
@@ -69,7 +74,7 @@ const FootpathDetailsScreen = ({
 					</Text>
 				</View>
 				<FootpathCarousel
-					imagesPath={[
+					imagesSources={[
 						require("../../../img/NOIMAGE.png"),
 						require("../../../img/NOIMAGE.png"),
 						require("../../../img/NOIMAGE.png"),
