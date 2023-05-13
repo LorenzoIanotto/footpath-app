@@ -11,8 +11,7 @@ import styles from "./styles";
 import { Controller, useForm } from "react-hook-form";
 import { AuthenticationError } from "../../../types/auth/AuthenticationError";
 import { SignInScreenProps } from "../../../navigation/AuthStack";
-import {Image} from "react-native";
-import { SvgUri } from "react-native-svg";
+import { Image } from "react-native";
 
 type formData = {
 	email: string;
@@ -24,10 +23,7 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 		navigation.setOptions({ title: "Login" });
 	});
 
-	const {
-		login,
-		authStatus,
-	} = useContext(AuthContext);
+	const { login, authStatus } = useContext(AuthContext);
 
 	const form = useForm<formData>();
 
@@ -37,7 +33,6 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 
 	return (
 		<View style={styles.mainView}>
-
 			<Image
 				source={require("../../../img/leaf.png")}
 				style={styles.image}
@@ -55,15 +50,21 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 						value={value}
 						mode="outlined"
 						error={
-							authStatus.error === AuthenticationError.NonExistingUser
+							authStatus.error ===
+							AuthenticationError.NonExistingUser
 						}
-						outlineStyle={{borderRadius: 20, backgroundColor: "#fff"}}
+						outlineStyle={{
+							borderRadius: 20,
+							backgroundColor: "#fff",
+						}}
 					/>
 				)}
 			/>
 			<HelperText
 				type="error"
-				visible={authStatus.error === AuthenticationError.NonExistingUser}
+				visible={
+					authStatus.error === AuthenticationError.NonExistingUser
+				}
 			>
 				Utente non esistente
 			</HelperText>
@@ -79,9 +80,15 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 						onChangeText={onChange}
 						value={value}
 						mode="outlined"
-						error={authStatus.error === AuthenticationError.WrongPassword}
+						error={
+							authStatus.error ===
+							AuthenticationError.WrongPassword
+						}
 						secureTextEntry
-						outlineStyle={{borderRadius: 20, backgroundColor: "#fff"}}
+						outlineStyle={{
+							borderRadius: 20,
+							backgroundColor: "#fff",
+						}}
 					/>
 				)}
 			/>
@@ -91,7 +98,11 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 			>
 				Password errata
 			</HelperText>
-			<Button mode="elevated" onPress={form.handleSubmit(onSubmit)} style={styles.button}>
+			<Button
+				mode="elevated"
+				onPress={form.handleSubmit(onSubmit)}
+				style={styles.button}
+			>
 				Login
 			</Button>
 			<ActivityIndicator animating={authStatus.inProgress} size="large" />

@@ -9,8 +9,6 @@ const NavigationHeader = ({
 }: StackHeaderProps) => {
 	const theme = useTheme();
 
-
-
 	return (
 		<Appbar.Header
 			// theme={{
@@ -21,12 +19,25 @@ const NavigationHeader = ({
 			// }}
 			mode="center-aligned"
 			theme={theme}
-
 			style={{ backgroundColor: theme.colors.primary }}
 		>
-			{back && <Appbar.BackAction onPress={() => navigation.goBack()} color="white" />}
-			<Appbar.Content title={title ?? name} titleStyle={{ color: theme.colors.onPrimary }} />
-			{headerRight && headerRight({}) && <Appbar.Action icon="account-circle" onPress={() => navigation.navigate("AccountSettingsScreen")} color="white" />}
+			{back && (
+				<Appbar.BackAction
+					onPress={() => navigation.goBack()}
+					color="white"
+				/>
+			)}
+			<Appbar.Content
+				title={title ?? name}
+				titleStyle={{ color: theme.colors.onPrimary }}
+			/>
+			{headerRight && headerRight({}) && (
+				<Appbar.Action
+					icon="account-circle"
+					onPress={() => navigation.navigate("AccountSettingsScreen")}
+					color="white"
+				/>
+			)}
 		</Appbar.Header>
 	);
 };
