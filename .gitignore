@@ -12,3 +12,6 @@ web-build/
 
 # macOS
 .DS_Store
+
+# Ignore npm files (we use yarn)
+package-lock.json
