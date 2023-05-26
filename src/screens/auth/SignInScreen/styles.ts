@@ -13,10 +13,7 @@ export default StyleSheet.create({
 		marginTop: "-30%",
 		marginBottom: "10%",
 	},
-	button: {
-		marginTop: "10%",
-	},
-
-
-
+	loginButton: {
+		marginTop: "5%",
+	}
 });

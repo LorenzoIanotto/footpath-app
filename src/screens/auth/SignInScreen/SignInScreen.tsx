@@ -12,6 +12,7 @@ import { Controller, useForm } from "react-hook-form";
 import { AuthenticationError } from "../../../types/auth/AuthenticationError";
 import { SignInScreenProps } from "../../../navigation/AuthStack";
 import { Image } from "react-native";
+import ServerCommunicationErrorDialog from "../../../components/SignInScreen/ServerCommunicationErrorDialog/ServerCommunicationErrorDialog";
 
 type formData = {
 	email: string;
@@ -98,14 +99,14 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 			>
 				Password errata
 			</HelperText>
+			<ActivityIndicator animating={authStatus.inProgress} size="large" style={styles.loginButton} />
+			<ServerCommunicationErrorDialog />
 			<Button
 				mode="elevated"
 				onPress={form.handleSubmit(onSubmit)}
-				style={styles.button}
 			>
 				Login
 			</Button>
-			<ActivityIndicator animating={authStatus.inProgress} size="large" />
 		</View>
 	);
 };
