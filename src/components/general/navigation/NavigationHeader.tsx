@@ -25,7 +25,7 @@ const NavigationHeader = ({
 			style={{ backgroundColor: theme.colors.primary }}
 		>
 			{back && <Appbar.BackAction onPress={() => navigation.goBack()} color="white" />}
-			<Appbar.Content title={title ?? name} titleStyle={{ color: theme.colors.onPrimary }} />
+			<Appbar.Content title={title ?? name} titleStyle={{ color: theme.colors.onPrimary, fontSize: 23, fontWeight: "bold" }} />
 			{headerRight && headerRight({}) && <Appbar.Action icon="account-circle" onPress={() => navigation.navigate("AccountSettingsScreen")} color="white" />}
 		</Appbar.Header>
 	);
