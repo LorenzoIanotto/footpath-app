@@ -1,5 +1,6 @@
 import { useState } from "react";
 import authenticateUser from "../adapters/auth/authenticateUser";
+import registerUser from "../adapters/auth/registerUser";
 import { AuthenticationError } from "../types/auth/AuthenticationError";
 import AuthHandler from "../types/auth/AuthHandler";
 import AuthStatus from "../types/auth/AuthStatus";
@@ -32,7 +33,25 @@ const useAuth = (): AuthHandler => {
 		setAuthStatus({ user: null, inProgress: false, error: null });
 	}
 
-	return { authStatus, login, logout };
+	async function register(email: string, username: string, password: string) {
+		setAuthStatus({ user: null, inProgress: true, error: null });
+		try {
+			await registerUser(email, username, password);
+			setAuthStatus({
+				user: null,
+				inProgress: false,
+				error: null,
+			});
+		} catch (e) {
+			setAuthStatus({
+				user: null,
+				inProgress: false,
+				error: e as AuthenticationError,  // TODO: handle errors with a separate enum (eg RegistrationError)
+			});
+		}
+	}
+
+	return { authStatus, login, logout, register };
 };
 
 export default useAuth;

@@ -1,35 +1,31 @@
 import { View } from "react-native";
 import React, { useContext } from "react";
 import AuthContext from "../../../contexts/global/AuthContext";
-import {
-	ActivityIndicator,
-	Button,
-	HelperText,
-	TextInput,
-} from "react-native-paper";
+import { ActivityIndicator, Button, TextInput } from "react-native-paper";
 import styles from "./styles";
 import { Controller, useForm } from "react-hook-form";
-import { AuthenticationError } from "../../../types/auth/AuthenticationError";
-import { SignInScreenProps } from "../../../navigation/AuthStack";
+import { RegisterScreenProps } from "../../../navigation/AuthStack";
 import { Image } from "react-native";
 import ServerCommunicationErrorDialog from "../../../components/SignInScreen/ServerCommunicationErrorDialog/ServerCommunicationErrorDialog";
 
 type formData = {
 	email: string;
+	username: string;
 	password: string;
 };
 
-const SignInScreen = ({ navigation }: SignInScreenProps) => {
+const RegisterScreen = ({ navigation }: RegisterScreenProps) => {
 	React.useLayoutEffect(() => {
-		navigation.setOptions({ title: "Login" });
+		navigation.setOptions({ title: "Registrati" });
 	});
 
-	const { login, authStatus } = useContext(AuthContext);
+	const { register, authStatus } = useContext(AuthContext);
 
 	const form = useForm<formData>();
 
-	async function onSubmit({ email, password }: formData) {
-		await login(email, password);
+	async function onSubmit({ email, username, password }: formData) {
+		await register(email, username, password);
+		navigation.goBack();
 	}
 
 	return (
@@ -50,10 +46,10 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 						onChangeText={onChange}
 						value={value}
 						mode="outlined"
-						error={
-							authStatus.error ===
-							AuthenticationError.NonExistingUser
-						}
+						// error={
+						// 	authStatus.error ===
+						// 	AuthenticationError.NonExistingUser
+						// }
 						outlineStyle={{
 							borderRadius: 20,
 							backgroundColor: "#fff",
@@ -61,14 +57,29 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 					/>
 				)}
 			/>
-			<HelperText
-				type="error"
-				visible={
-					authStatus.error === AuthenticationError.NonExistingUser
-				}
-			>
-				Utente non esistente
-			</HelperText>
+
+			<Controller
+				name="username"
+				control={form.control}
+				rules={{ required: true }}
+				render={({ field: { onChange, value, onBlur } }) => (
+					<TextInput
+						placeholder="Username"
+						onBlur={onBlur}
+						onChangeText={onChange}
+						value={value}
+						mode="outlined"
+						// error={
+						// 	authStatus.error ===
+						// 	AuthenticationError.NonExistingUser
+						// }
+						outlineStyle={{
+							borderRadius: 20,
+							backgroundColor: "#fff",
+						}}
+					/>
+				)}
+			/>
 
 			<Controller
 				name="password"
@@ -81,10 +92,10 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 						onChangeText={onChange}
 						value={value}
 						mode="outlined"
-						error={
-							authStatus.error ===
-							AuthenticationError.WrongPassword
-						}
+						// error={
+						// 	authStatus.error ===
+						// 	AuthenticationError.WrongPassword
+						// }
 						secureTextEntry
 						outlineStyle={{
 							borderRadius: 20,
@@ -93,25 +104,17 @@ const SignInScreen = ({ navigation }: SignInScreenProps) => {
 					/>
 				)}
 			/>
-			<HelperText
-				type="error"
-				visible={authStatus.error === AuthenticationError.WrongPassword}
-			>
-				Password errata
-			</HelperText>
-			<ActivityIndicator animating={authStatus.inProgress} size="large" style={styles.loginButton} />
+			<ActivityIndicator
+				animating={authStatus.inProgress}
+				size="large"
+				style={styles.loginButton}
+			/>
 			<ServerCommunicationErrorDialog />
-			<Button
-				mode="elevated"
-				onPress={form.handleSubmit(onSubmit)}
-			>
-				Login
-			</Button>
-			<Button onPress={() => navigation.navigate("RegisterScreen")}>
-				Registrati
+			<Button mode="elevated" onPress={form.handleSubmit(onSubmit)}>
+				Conferma
 			</Button>
 		</View>
 	);
 };
 
-export default SignInScreen;
+export default RegisterScreen;
